@@ -13,16 +13,13 @@ router.post("/cadastrar", async (req, res, next) => {
   try {
     const { nome, origem, destino, horarioPartida, horarioChegada } = req.body;
 
-    const horarioPartidaISO = new Date().toISOString().slice(0, 11) + horarioPartida + ":00.000Z";
-    const horarioChegadaISO = new Date().toISOString().slice(0, 11) + horarioChegada + ":00.000Z";
-
     const novaLinha = await prisma.linha.create({
       data: {
         nome,
         origem,
         destino,
-        horarioPartida: horarioPartidaISO,
-        horarioChegada: horarioChegadaISO,
+        horarioPartida: new Date(`1970-01-01T${horarioPartida}:00Z`),
+        horarioChegada: new Date(`1970-01-01T${horarioChegada}:00Z`),
       },
     });
 
