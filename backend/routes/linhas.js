@@ -30,4 +30,22 @@ router.post("/cadastrar", async (req, res, next) => {
   }
 });
 
+router.get("/qtd-horarios-por-linha", async function (req, res, next) {
+  try {
+    const linhas = await prisma.linha.groupBy({
+      by: ["nome"],
+      _count: true,
+      orderBy: {
+        _count: {
+          nome: "desc",
+        },
+      },
+    });
+
+    res.json(linhas);
+  } catch (error) {
+    res.status(500).json({ error: "Erro ao realizar consulta." });
+  } 
+});
+
 module.exports = router;
