@@ -9,17 +9,20 @@ router.get("/", async function (req, res, next) {
   res.json(linhas);
 });
 
-router.post("/criar", async (req, res, next) => {
+router.post("/cadastrar", async (req, res, next) => {
   try {
     const { nome, origem, destino, horarioPartida, horarioChegada } = req.body;
+
+    const horarioPartidaISO = new Date().toISOString().slice(0, 11) + horarioPartida + ":00.000Z";
+    const horarioChegadaISO = new Date().toISOString().slice(0, 11) + horarioChegada + ":00.000Z";
 
     const novaLinha = await prisma.linha.create({
       data: {
         nome,
         origem,
         destino,
-        horarioPartida,
-        horarioChegada,
+        horarioPartida: horarioPartidaISO,
+        horarioChegada: horarioChegadaISO,
       },
     });
 
