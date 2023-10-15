@@ -11,15 +11,17 @@ router.get("/", async function (req, res, next) {
 
 router.post("/cadastrar", async (req, res, next) => {
   try {
-    const { nome, origem, destino, horarioPartida, horarioChegada } = req.body;
+    const { nome, origem, destino, horarioPartida, duracao } = req.body;
+
+    console.log(req.body);
 
     const novaLinha = await prisma.linha.create({
       data: {
         nome,
         origem,
         destino,
-        horarioPartida: new Date(`1970-01-01T${horarioPartida}:00Z`),
-        horarioChegada: new Date(`1970-01-01T${horarioChegada}:00Z`),
+        horarioPartida: `1970-01-01T${horarioPartida}:00Z`,
+        duracao: parseInt(duracao),
       },
     });
 
@@ -45,7 +47,7 @@ router.get("/qtd-horarios-por-linha", async function (req, res, next) {
     res.json(linhas);
   } catch (error) {
     res.status(500).json({ error: "Erro ao realizar consulta." });
-  } 
+  }
 });
 
 module.exports = router;

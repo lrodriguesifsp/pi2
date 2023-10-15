@@ -16,7 +16,7 @@
     <div class="container my-3">
         <div class="row">
             <div class="col-12">
-                <h1 class="h1">Cadastro de Linha de Ônibus</h1>
+                <h1 class="h1">CADASTRAR LINHA DE ÔNIBUS</h1>
             </div>
         </div>
 
@@ -47,9 +47,9 @@
                 </div>
 
                 <div class="col-6">
-                    <label for="horarioChegada" class="form-label">Horário de Chegada</label>
-                    <input type="time" class="form-control" id="horarioChegada" required>
-                    <div class="invalid-feedback">Horário de Chegada é um campo obrigatório.</div>
+                    <label for="duracao" class="form-label">Duração da Viagem (em minutos)</label>
+                    <input type="number" class="form-control" id="duracao" required min="0" max="65535">
+                    <div class="invalid-feedback">Duração da viagem é um campo obrigatório.</div>
                 </div>
             </div>
 
@@ -80,14 +80,14 @@
                         const origem = document.getElementById('origem').value;
                         const destino = document.getElementById('destino').value;
                         const horarioPartida = document.getElementById('horarioPartida').value;
-                        const horarioChegada = document.getElementById('horarioChegada').value;
+                        const duracao = document.getElementById('duracao').value;
 
                         const data = {
                             nome,
                             origem,
                             destino,
                             horarioPartida,
-                            horarioChegada
+                            duracao
                         };
 
                         const response = await axios.post('http://localhost:3000/api/linhas/cadastrar', data);

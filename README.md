@@ -9,3 +9,9 @@
 É possível exportar o script SQL de criação do banco de dados pelo MySQL Workbench em: Menu > Database > Forward Engineer. Entretanto, o código gerado é para o SGBDR MySQL e não para o MariaDB, sendo assim é necessário remover a palavra chave "VISIBLE" de todos os índices e chaves estrangeiras, conforme exemplo abaixo:
 - Código gerado: INDEX `fk_cliente_usuario1_idx` (`usuario_id` ASC) **VISIBLE**,
 - Código ajustado: INDEX `fk_cliente_usuario1_idx` (`usuario_id` ASC),
+
+## Arquivo .env:
+Criar um arquivo .env com a URL do banco de dados:
+- DATABASE_URL="mysql://root:@127.0.0.1:3306/pi2db"
+
+O arquivo .env também pode armazenar a porta, desta forma não seria necessário modificar o arquivo `bin/www`.
