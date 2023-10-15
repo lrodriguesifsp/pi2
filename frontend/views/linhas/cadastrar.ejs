@@ -13,6 +13,8 @@
 
 <body>
 
+    <div id="alert" class="container my-4"></div> <!-- placeholder para a mensagem de alerta -->
+
     <div class="container my-3">
         <div class="row">
             <div class="col-12">
@@ -64,55 +66,9 @@
         crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    
-    <script>
-        (() => {
-            const form = document.querySelector('#linhaOnibusForm');
 
-            form.addEventListener('submit', async event => {
-                event.preventDefault();
-
-                if (!form.checkValidity()) {
-                    event.stopPropagation();
-                } else {
-                    try {
-                        const nome = document.getElementById('nome').value;
-                        const origem = document.getElementById('origem').value;
-                        const destino = document.getElementById('destino').value;
-                        const horarioPartida = document.getElementById('horarioPartida').value;
-                        const duracao = document.getElementById('duracao').value;
-
-                        const data = {
-                            nome,
-                            origem,
-                            destino,
-                            horarioPartida,
-                            duracao
-                        };
-
-                        const response = await axios.post('http://localhost:3000/api/linhas/cadastrar', data);
-
-                        console.log('Resposta do servidor:', response.data);
-
-                        if (response.status === 200) {
-                            localStorage.setItem('alert', JSON.stringify({
-                                alertType: 'success',
-                                alertMessage: 'Cadastro realizado com sucesso'
-                            }));
-
-                            window.location.href = 'http://localhost:3001/';
-                        } else {
-                            console.error('Erro no servidor:', response.data);
-                        }
-                    } catch (error) {
-                        console.error('Erro ao enviar a solicitação:', error);
-                    }
-                }
-
-                form.classList.add('was-validated');
-            });
-        })();
-    </script>
+    <script src="/js/util.js"></script>
+    <script src="/js/linhas/cadastrar.js"></script>
 </body>
 
 </html>

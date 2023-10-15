@@ -21,7 +21,7 @@ router.post("/cadastrar", async (req, res, next) => {
         origem,
         destino,
         horarioPartida: `1970-01-01T${horarioPartida}:00Z`,
-        duracao: parseInt(duracao),
+        duracao: parseInt(duracao)
       },
     });
 
