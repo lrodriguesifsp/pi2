@@ -10,6 +10,9 @@
 - Código gerado: INDEX `fk_cliente_usuario1_idx` (`usuario_id` ASC) **VISIBLE**,
 - Código ajustado: INDEX `fk_cliente_usuario1_idx` (`usuario_id` ASC),
 
+## Configuração do Banco de Dados:
+- Executar o arquivo `db/script.sql` para criar o banco de dados.
+
 ## Arquivo .env:
 Criar um arquivo .env (na raiz do repositório do backend) com a URL do banco de dados:
 - DATABASE_URL="mysql://root:@127.0.0.1:3306/pi2db"
