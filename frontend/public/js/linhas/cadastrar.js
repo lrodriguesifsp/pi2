@@ -31,13 +31,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const response = await axios.post(url, data);
 
         // console.log("response.data:", response.data);
-        
+
         if (response.status === 200) {
           localStorage.setItem("alert", JSON.stringify({ alertType: "success", alertMessage: "Cadastro realizado com sucesso" }));
           window.location.href = "http://localhost:3001/"; // redirect url
         } else {
             // console.error("Erro no servidor:", response.data);
-            showAlert("Erro", 'danger')
+            showAlert("Ocorreu um erro ao realizar o cadastro.", 'danger')
         }
       } catch (error) {
         // console.error("Erro ao enviar a solicitação:", error);
