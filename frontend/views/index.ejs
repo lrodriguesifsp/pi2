@@ -6,7 +6,7 @@
 </head>
 
 <body>
-  <div id="alert" class="container my-4"></div> <!-- placeholder para a mensagem de alerta -->
+  <div id="flashMessagePlaceholder" class="container my-4"></div>
 
   <header class="container">
     <h1>FrontEnd</h1>
@@ -14,13 +14,19 @@
 
   <div class="container">
     <ul>
-      <li><a href="/linhas/listar">/linhas</a></li>
-      <li><a href="/linhas/cadastrar">/linhas/cadastrar</a></li>
-      <li><a href="/linhas/qtd-horarios-por-linha">/linhas/qtd-horarios-por-linha</a></li>
-      <li><a href="http://localhost:3000/api/linhas/listar">http://localhost:3000/api/linhas/listar</a></li>
-      <li><a
-          href="http://localhost:3000/api/linhas/qtd-horarios-por-linha">http://localhost:3000/api/linhas/qtd-horarios-por-linha</a>
-      </li>
+      <li>FrontEnd</li>
+      <ul>
+        <li><a href="/linhas/listar">/linhas</a></li>
+      </ul>
+      <li>BackEnd</li>
+      <ul>
+        <li><a href="/linhas/qtd-horarios-por-linha">/linhas/qtd-horarios-por-linha</a></li>
+        <li><a href="http://localhost:3000/api/linhas/listar">http://localhost:3000/api/linhas/listar</a></li>
+        <li><a href="http://localhost:3000/api/linhas/buscar/1">http://localhost:3000/api/linhas/buscar/1</a></li>
+        <li><a
+            href="http://localhost:3000/api/linhas/qtd-horarios-por-linha">http://localhost:3000/api/linhas/qtd-horarios-por-linha</a>
+        </li>
+      </ul>
     </ul>
   </div>
 

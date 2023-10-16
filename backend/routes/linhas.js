@@ -9,6 +9,27 @@ router.get("/listar", async function (req, res, next) {
   res.json(linhas);
 });
 
+router.get("/buscar/:id", async function (req, res, next) {
+  const linhaId = parseInt(req.params.id); 
+
+  try {
+    const linha = await prisma.linha.findUnique({
+      where: {
+        id: linhaId,
+      },
+    });
+
+    if (linha) {
+      res.json(linha);
+    } else {
+      res.status(404).json({ error: 'Linha não encontrada' });
+    }
+  } catch (error) {
+    console.error('Erro ao buscar linha por ID:', error);
+    res.status(500).json({ error: 'Erro interno do servidor' });
+  }
+});
+
 router.post("/cadastrar", async (req, res, next) => {
   try {
     const { nome, origem, destino, horarioPartida, duracao } = req.body;
@@ -29,6 +50,51 @@ router.post("/cadastrar", async (req, res, next) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao criar a linha." });
+  }
+});
+
+router.put('/editar/:id', async function (req, res, next) {
+  try {
+    const id = parseInt(req.params.id);
+    const { nome, origem, destino, horarioPartida, duracao } = req.body;
+    
+    const linhaAtualizada = await prisma.linha.update({
+      where: {
+        id: id,
+      },
+      data: {
+        nome: nome,
+        origem: origem,
+        destino: destino,
+        horarioPartida: `1970-01-01T${horarioPartida}:00Z`,
+        duracao: parseInt(duracao),
+      },
+    });
+
+    res.json(linhaAtualizada);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao atualizar a linha.' });
+  }
+});
+
+router.delete("/excluir/:id", async function (req, res, next) {
+  try {
+    const id = parseInt(req.params.id);
+    const linhaExcluida = await prisma.linha.delete({
+      where: {
+        id: id,
+      },
+    });
+
+    if (linhaExcluida) {
+      res.json({ message: "Linha excluída com sucesso." });
+    } else {
+      res.status(404).json({ error: "Linha não encontrada." });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao excluir a linha." });
   }
 });
 

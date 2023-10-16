@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  displayFlashMessage();
+
   const form = document.querySelector("#linhaOnibusForm");
 
   form.addEventListener("submit", async (event) => {
@@ -30,18 +32,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
         // realizar requisição
         const response = await axios.post(url, data);
 
-        // console.log("response.data:", response.data);
-
         if (response.status === 200) {
-          localStorage.setItem("alert", JSON.stringify({ alertType: "success", alertMessage: "Cadastro realizado com sucesso" }));
-          window.location.href = "http://localhost:3001/"; // redirect url
+          storeFlashMessage("success", "Cadastro realizado com sucesso");
+          window.location.href = "http://localhost:3001/linhas/listar"; // redirect url
         } else {
-            // console.error("Erro no servidor:", response.data);
-            showAlert("Ocorreu um erro ao realizar o cadastro.", 'danger')
+          storeFlashMessage("danger", "Ocorreu um erro ao realizar o cadastro");
+          displayFlashMessage();
         }
       } catch (error) {
-        // console.error("Erro ao enviar a solicitação:", error);
-        showAlert(error, 'danger')
+        storeFlashMessage("danger", error.message);
+        displayFlashMessage();
       }
     }
 
