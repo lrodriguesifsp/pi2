@@ -35,8 +35,7 @@ document.addEventListener("DOMContentLoaded", async (event) => {
       row.insertCell(8).appendChild(deleteLink);
     });
   } catch (error) {
-    storeFlashMessage("danger", error.message);
-    displayFlashMessage();
+    triggerFlashMessage("danger", error.message);
   }
 });
 

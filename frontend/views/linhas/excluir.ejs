@@ -13,7 +13,7 @@
 
 <body>
 
-    <div id="flashMessagePlaceholder" class="container my-4"></div>
+    <div id="flashMessageContainer" class="container my-4"></div>
 
     <div class="container my-3">
         <h1 class="h1">EXCLUIR LINHA DE ÔNIBUS</h1>
@@ -27,7 +27,7 @@
             <li><strong>Duração (em minutos):</strong> <span id="duracao"></span></li>
         </ul>
 
-        <form id="excluirLinhaOnibus">
+        <form id="form">
             <input type="submit" value="Confirmar" class="btn btn-danger">
             <a href="/linhas/listar" class="btn btn-info my-2">Cancelar</a>
         </form>
@@ -40,7 +40,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <script src="/js/util.js"></script>
+    <script src="/js/flashMessage.js"></script>
     <script src="/js/linhas/excluir.js"></script>
 </body>
 

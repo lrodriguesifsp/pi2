@@ -1,50 +1,32 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
   displayFlashMessage();
 
-  const form = document.querySelector("#linhaOnibusForm");
+  const form = document.querySelector("#form");
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    if (!form.checkValidity()) {
-      event.stopPropagation();
-    } else {
+    if (form.checkValidity()) {
+      const nome = document.querySelector("#nome").value;
+      const origem = document.querySelector("#origem").value;
+      const destino = document.querySelector("#destino").value;
+      const horarioPartida = document.querySelector("#horarioPartida").value;
+      const duracao = document.querySelector("#duracao").value;
+
+      const data = { nome, origem, destino, horarioPartida, duracao };
+
       try {
-        // obter os dados do formulário
-        const nome = document.querySelector("#nome").value;
-        const origem = document.querySelector("#origem").value;
-        const destino = document.querySelector("#destino").value;
-        const horarioPartida = document.querySelector("#horarioPartida").value;
-        const duracao = document.querySelector("#duracao").value;
+        const response = await axios.post("http://localhost:3000/api/linhas/cadastrar", data);
+      
+        storeFlashMessage("success", "Cadastro realizado sucesso");
 
-        // criar um objeto contendo os dados do formulário
-        const data = {
-          nome,
-          origem,
-          destino,
-          horarioPartida,
-          duracao,
-        };
-
-        // url do backend
-        const url = "http://localhost:3000/api/linhas/cadastrar";
-
-        // realizar requisição
-        const response = await axios.post(url, data);
-
-        if (response.status === 200) {
-          storeFlashMessage("success", "Cadastro realizado com sucesso");
-          window.location.href = "http://localhost:3001/linhas/listar"; // redirect url
-        } else {
-          storeFlashMessage("danger", "Ocorreu um erro ao realizar o cadastro");
-          displayFlashMessage();
-        }
+        const id = response.data.id;
+        window.location.href = `http://localhost:3001/linhas/exibir/${id}`;
       } catch (error) {
-        storeFlashMessage("danger", error.message);
-        displayFlashMessage();
+        triggerFlashMessage("danger", error.message);
       }
     }
-
+    
     form.classList.add("was-validated");
   });
 });

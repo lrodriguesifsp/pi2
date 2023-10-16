@@ -34,8 +34,6 @@ router.post("/cadastrar", async (req, res, next) => {
   try {
     const { nome, origem, destino, horarioPartida, duracao } = req.body;
 
-    console.log(req.body);
-
     const novaLinha = await prisma.linha.create({
       data: {
         nome,

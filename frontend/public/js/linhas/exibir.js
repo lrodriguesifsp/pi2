@@ -2,10 +2,10 @@ document.addEventListener("DOMContentLoaded", async (event) => {
   displayFlashMessage();
 
   const url = window.location.href;
-  const id = url.split("/").pop();
+  const urlId = url.split("/").pop();
 
   try {
-    const response = await axios.get(`http://localhost:3000/api/linhas/buscar/${id}`);
+    const response = await axios.get(`http://localhost:3000/api/linhas/buscar/${urlId}`);
     const linha = response.data;
 
     const horarioPartida = linha.horarioPartida.substring(11, 16);
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
     document.querySelector("#horarioPartida").textContent = horarioPartida;
     document.querySelector("#duracao").textContent = linha.duracao;
   } catch (error) {
-    storeFlashMessage("danger", error.message);
-    displayFlashMessage();
+    triggerFlashMessage("danger", error.message);
   }
 });
