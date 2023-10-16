@@ -11,6 +11,20 @@ document.addEventListener("DOMContentLoaded", async (event) => {
             row.insertCell(3).innerHTML = bus.destino;
             row.insertCell(4).innerHTML = formatarHorario(bus.horarioPartida);
             row.insertCell(5).innerHTML = bus.duracao;
+
+            // Link para Editar
+            const editLink = document.createElement('a');
+            editLink.innerHTML = 'Editar';
+            editLink.classList.add('btn', 'btn-primary', 'btn-sm', 'mx-1');
+            editLink.href = `http://localhost:3001/linhas/${bus.id}/editar`;
+            row.insertCell(6).appendChild(editLink);
+
+            // Link para Deletar
+            const deleteLink = document.createElement('a');
+            deleteLink.innerHTML = 'Deletar';
+            deleteLink.classList.add('btn', 'btn-danger', 'btn-sm', 'mx-1');
+            deleteLink.href = `http://localhost:3001/linhas/${bus.id}/deletar`;
+            row.insertCell(7).appendChild(deleteLink);
         });
     } catch (error) {
         showAlert(error, 'danger')
