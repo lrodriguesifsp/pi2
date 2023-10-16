@@ -11,7 +11,7 @@
 - Código ajustado: INDEX `fk_cliente_usuario1_idx` (`usuario_id` ASC),
 
 ## Arquivo .env:
-Criar um arquivo .env com a URL do banco de dados:
+Criar um arquivo .env (na raiz do repositório do backend) com a URL do banco de dados:
 - DATABASE_URL="mysql://root:@127.0.0.1:3306/pi2db"
 
 O arquivo .env também pode armazenar a porta, desta forma não seria necessário modificar o arquivo `bin/www`.
