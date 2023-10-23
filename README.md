@@ -12,9 +12,7 @@
 
 ## Configuração do Banco de Dados:
 - Executar o arquivo `db/script.sql` para criar o banco de dados.
-
-## Arquivo .env:
-Criar um arquivo .env (na raiz do repositório do backend) com a URL do banco de dados:
-- DATABASE_URL="mysql://root:@127.0.0.1:3306/pi2db"
+- Criar o arquivo `.env` (na raiz do repositório do backend) contendo a URL do banco de dados: DATABASE_URL="mysql://root:@127.0.0.1:3306/pi2db"
+- Executar o comando `prisma generate`
 
 O arquivo .env também pode armazenar a porta, desta forma não seria necessário modificar o arquivo `bin/www`.
