@@ -4,6 +4,16 @@ const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
+router.get("/", async (req, res) => {
+  try {
+    const linhas = await prisma.linha.findMany();
+    res.json(linhas);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao obter os dados das linhas." });
+  }
+});
+
 router.get("/listar", async function (req, res, next) {
   const linhas = await prisma.linha.findMany();
   res.json(linhas);
